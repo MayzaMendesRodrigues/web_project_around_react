@@ -1,6 +1,6 @@
-import avatar from '../images/avatar.svg'
-import editProfile from '../images/edit__button.svg'
-import addCard from '../images/plus.svg'
+import avatar from '../../images/avatar.svg'
+import editProfile from '../../images/edit__button.svg'
+import addCard from '../../images/plus.svg'
 export default function Main() {
   return (
     <main className="content">
