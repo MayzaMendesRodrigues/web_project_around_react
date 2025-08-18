@@ -1,12 +1,15 @@
+import closed from "../../images/plus.svg";
 export default function Popup(props) {
-  const { title, children } = props;
+  const { onClose, title, children } = props;
   return (
-    <section className="popup">
-      <form className="popup__form">
+    <div className="popup">
+      <div className="popup__form">
+        <button type="button" className="popup__closed" onClick={onClose}>
+          <img src={closed} alt="Fechar" />
+        </button>
         <h3 className="popup__title">{title}</h3>
         {children}
-        <img src="./images/plus.svg" alt="Fechar" className="popup__closed" />
-      </form>
-    </section>
+      </div>
+    </div>
   );
 }
