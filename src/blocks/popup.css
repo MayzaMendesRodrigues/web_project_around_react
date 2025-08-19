@@ -12,9 +12,11 @@
   z-index: 9;
   cursor: pointer;
 }
+.popup__content {
+  position: relative;
+}
 
-.popup__form
- {
+.popup__form {
   width: 430px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 10px;
@@ -29,7 +31,6 @@
   font-weight: 900;
   font-size: 24px;
   color: rgba(0, 0, 0, 1);
-  /* margin-bottom:54px; */
 }
 
 .popup__closed {

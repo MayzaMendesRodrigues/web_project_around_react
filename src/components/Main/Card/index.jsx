@@ -1,11 +1,9 @@
-import trash from "/images/trash.svg";
 export default function Card({ card, handleOpenPopup }) {
   const { name, link } = card;
 
   return (
     <li className="card">
-      <button aria-label="Excluir post">
-        <img src={trash} className="cards__trash" />
+      <button aria-label="Excluir post" className="cards__trash">
       </button>
       <img
         src={link}
