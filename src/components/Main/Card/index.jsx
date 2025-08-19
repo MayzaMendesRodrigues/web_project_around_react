@@ -1,13 +1,21 @@
-export default function Card(props) {
-  const { name, link } = props.card;
+import trash from "../../../images/trash.svg";
+export default function Card({ card, handleOpenPopup }) {
+  const { name, link } = card;
+
   return (
     <li className="card">
-      {/* <button classNme="cards__trash" aria-label="Excluir post"></button> */}
-      <img src={link} alt="" className="cards__img" />
+      <button aria-label="Excluir post">
+        <img src={trash} className="cards__trash" />
+      </button>
+      <img
+        src={link}
+        alt={name}
+        className="cards__img"
+        onClick={() => handleOpenPopup(card)}
+      />
       <div className="cards__content">
         <h2 className="cards__title">{name}</h2>
-        <button className="cards__like" aria-label="Curtir post">
-        </button>
+        <button className="cards__like" aria-label="Curtir post"></button>
       </div>
     </li>
   );

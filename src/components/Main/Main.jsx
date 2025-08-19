@@ -7,7 +7,7 @@ import NewCard from "./NewCard";
 import EditProfile from "./EditProfile";
 import EditAvatar from "./EditAvatar";
 import Card from "./Card";
-
+import ImagePopup from "./ImagePopup";
 const cards = [
   {
     isLiked: false,
@@ -27,24 +27,24 @@ const cards = [
   },
 ];
 
-console.log(cards);
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = {
-    title: "NewCard",
     children: <NewCard />,
   };
   const newAvatarPopup = {
-    title: "Alterar a foto do perfil",
     children: <EditAvatar />,
   };
   const newProfilePopup = {
-    title: "Editar perfil",
     children: <EditProfile />,
   };
 
+  const imagePopup = (card) => ({
+    title: "",
+    children: <ImagePopup card={card} onClose={handleClosePopup}/>,
+  });
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
@@ -94,8 +94,13 @@ export default function Main() {
       <section className="cards">
         <ul className="cards__element-items" id="cards__content">
           {cards.map((card) => {
-           return <Card key={card._id} card={card}/>
-
+            return (
+              <Card
+                key={card._id}
+                card={card}
+                handleOpenPopup={(img) => handleOpenPopup(imagePopup(img))}
+              />
+            );
           })}
         </ul>
       </section>
