@@ -1,7 +1,7 @@
 import { useState } from "react";
-import avatar from "../../images/avatar.svg";
-import editProfile from "../../images/edit__button.svg";
-import addCard from "../../images/plus.svg";
+import avatar from "/images/avatar.svg";
+import editProfile from "/images/edit__button.svg";
+import addCard from "/images/plus.svg";
 import Popup from "./Popup";
 import NewCard from "./NewCard";
 import EditProfile from "./EditProfile";

@@ -1,4 +1,4 @@
-import trash from "../../../images/trash.svg";
+import trash from "/images/trash.svg";
 export default function Card({ card, handleOpenPopup }) {
   const { name, link } = card;
 
