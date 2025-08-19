@@ -35,7 +35,7 @@ Este projeto foi criado com o objetivo principal de **desenvolver habilidades em
 
     ```bash
     # Clone o repositório
-    git clone [seu-repositorio]
+    git clone git@github.com:MayzaMendesRodrigues/web_project_around_react.git
     cd web_project_around_react
     ```
 
