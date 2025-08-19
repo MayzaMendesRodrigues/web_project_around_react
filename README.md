@@ -1,12 +1,78 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🇺🇸 EUA Afora em React
 
-Currently, two official plugins are available:
+-----
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Descrição do Projeto
 
-## Expanding the ESLint configuration
+Este projeto foi criado com o objetivo principal de **desenvolver habilidades em React**, servindo como um estudo de caso prático para a **migração de uma aplicação construída com JavaScript puro para o framework React**. O foco é converter um site funcional e interativo em uma aplicação moderna e baseada em componentes, usando o Vite como ferramenta de build.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-----
+
+##  Objetivos de Aprendizagem
+
+  - Configurar um projeto React com Vite.
+  - Converter HTML para JSX.
+  - Criar e organizar componentes React.
+  - Implementar a reutilização de componentes.
+  - Gerenciar `props` e `children`.
+  - Estruturar pastas de forma organizada.
+
+-----
+
+##  Tecnologias Utilizadas
+
+  - **React**: Biblioteca JavaScript para interfaces.
+  - **Vite**: Ferramenta de build rápida.
+  - **JSX**: Extensão de sintaxe JavaScript.
+  - **CSS**: Estilização (migrada do projeto anterior).
+
+-----
+
+## 🛠 Configuração Inicial
+
+1.  **Criar o Repositório**
+
+    ```bash
+    # Clone o repositório
+    git clone [seu-repositorio]
+    cd web_project_around_react
+    ```
+
+    ```bash
+    # Criar projeto React com Vite
+    npm create vite@latest .
+    # Selecione: React → JavaScript
+    ```
+
+    ```bash
+    # Instalar dependências
+    npm i
+    ```
+
+2.  **Configurar Scripts e Porta**
+
+    **`package.json`**:
+
+    ```json
+    "scripts": {
+      "dev": "vite --open",
+      "build": "vite build",
+      "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+      "preview": "vite preview"
+    }
+    ```
+
+    **`vite.config.js`**:
+
+    ```javascript
+    import { defineConfig } from 'vite';
+    import react from '@vitejs/plugin-react';
+
+    export default defineConfig({
+      plugins: [react()],
+      server: {
+        port: 3000,
+      },
+    });
+    ```
