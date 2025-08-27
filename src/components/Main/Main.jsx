@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import avatar from "/images/avatar.svg";
+import { useContext, useEffect, useState } from "react";
 import editProfile from "/images/edit__button.svg";
 import addCard from "/images/plus.svg";
 import Popup from "./Popup";
@@ -9,9 +8,10 @@ import EditAvatar from "./EditAvatar";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 import { api } from "../../utils/api";
-
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Main() {
+  const currentUser = useContext(CurrentUserContext)
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
 
@@ -53,7 +53,7 @@ export default function Main() {
         <div className="profile__content">
           <button type="button" onClick={() => handleOpenPopup(newAvatarPopup)}>
             <img
-              src={avatar}
+              src={currentUser.avatar}
               alt="Perfil do usuario"
               className="profile__avatar"
             />
@@ -63,7 +63,7 @@ export default function Main() {
         </div>
 
         <div className="profile__info">
-          <h1 className="profile__name">Jacques Cousteau</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__edit"
             id="profile__edit-btn"
@@ -72,7 +72,7 @@ export default function Main() {
           >
             <img src={editProfile} alt="Botao que edita o perfil do usuario" />
           </button>
-          <p className="profile__aboutMe">Explorador</p>
+          <p className="profile__aboutMe">{currentUser.about}</p>
         </div>
         <button
           className="profile__add-button"

@@ -4,6 +4,7 @@ import Main from "./components/Main/Main";
 import { api } from "./utils/api";
 import { useEffect, useState } from "react";
 import "./pages/index.css";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -20,10 +21,12 @@ export default function App() {
     loadingUser();
   }, []);
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <Header />
-      <Main currentUser ={currentUser} />
+      <Main />
       <Footer />
     </div>
+    </CurrentUserContext.Provider>
   );
 }
