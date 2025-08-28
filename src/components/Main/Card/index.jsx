@@ -1,5 +1,5 @@
 
-export default function Card({ card, handleOpenPopup, isLiked, onCardLike }) {
+export default function Card({ card, handleOpenPopup, isLiked, onCardLike, onCardDelete }) {
   const { name, link } = card;
 
   const cardLikeButtonClassName = `cards__like ${isLiked ? "active" : null}`
@@ -7,9 +7,13 @@ export default function Card({ card, handleOpenPopup, isLiked, onCardLike }) {
   function handleLikeCard() {
   onCardLike(card)
   }
+
+  function handleDeleteCard(){
+    onCardDelete(card)
+  }
   return (
     <li className="card">
-      <button aria-label="Excluir post" className="cards__trash"></button>
+      <button aria-label="Excluir post" className="cards__trash" onClick={handleDeleteCard}></button>
       <img
         src={link}
         alt={name}

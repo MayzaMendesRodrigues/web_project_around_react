@@ -14,10 +14,12 @@ export default function Main() {
   const currentUser = useContext(CurrentUserContext);
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
-
+  async function handleCardDelete(card) {
+    await api.deleteCard(card._id).then(() => {
+      setCards((state) => state.filter((currentCard) => currentCard._id !== card._id))
+    }).catch((error) => console.error("Erro ao eliminar card", error))
+  }
   async function handleCardLike(card) {
-  
-
     const isLiked = card.isLiked;
 
     await api
@@ -35,16 +37,16 @@ export default function Main() {
     async function loadingCard() {
       try {
         const response = await api.getInicialCards();
-              console.log(response)
+        console.log(response);
 
         setCards(response);
       } catch (error) {
         console.error("Erro ao buscar card", error);
       }
-
     }
     loadingCard();
   }, []);
+
   const newCardPopup = {
     children: <NewCard />,
   };
@@ -115,6 +117,7 @@ export default function Main() {
                 handleOpenPopup={(img) => handleOpenPopup(imagePopup(img))}
                 isLiked={card.isLiked}
                 onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
               />
             );
           })}
