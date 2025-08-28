@@ -1,10 +1,15 @@
-export default function Card({ card, handleOpenPopup }) {
+
+export default function Card({ card, handleOpenPopup, isLiked, onCardLike }) {
   const { name, link } = card;
 
+  const cardLikeButtonClassName = `cards__like ${isLiked ? "active" : null}`
+
+  function handleLikeCard() {
+  onCardLike(card)
+  }
   return (
     <li className="card">
-      <button aria-label="Excluir post" className="cards__trash">
-      </button>
+      <button aria-label="Excluir post" className="cards__trash"></button>
       <img
         src={link}
         alt={name}
@@ -13,7 +18,11 @@ export default function Card({ card, handleOpenPopup }) {
       />
       <div className="cards__content">
         <h2 className="cards__title">{name}</h2>
-        <button className="cards__like" aria-label="Curtir post"></button>
+        <button
+          className={cardLikeButtonClassName}
+          aria-label="Curtir post"
+          onClick={handleLikeCard}
+        ></button>
       </div>
     </li>
   );

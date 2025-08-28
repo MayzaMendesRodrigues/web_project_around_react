@@ -96,7 +96,7 @@
       throw new Error(`Error liking card: ${res.status}`);
     }
     const data = await res.json();
-    console.log("AQUIII Like CArd", data)
+    console.log("AQUIII Like Card", data)
     return data;
   }
 
@@ -114,7 +114,17 @@
     console.log("DESLIKE", data)
     return data;
   }
+
+  async changeLikeCardStatus(cardId , isLiked){
+    if (isLiked){
+        return this.likeCard(cardId)
+    } else {
+        return this.dislikeCard(cardId)
+    }
+  }
 }
+
+
 
 export const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",
