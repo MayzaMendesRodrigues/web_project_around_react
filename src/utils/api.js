@@ -96,7 +96,6 @@
       throw new Error(`Error liking card: ${res.status}`);
     }
     const data = await res.json();
-    console.log("AQUIII Like Card", data)
     return data;
   }
 
@@ -106,12 +105,10 @@
       headers: this.headers,
     });
 
-    console.log("testando", res)
     if (!res.ok) {
       throw new Error(`Error Disliking card: ${res.status}`);
     }
     const data = await res.json();
-    console.log("DESLIKE", data)
     return data;
   }
 
