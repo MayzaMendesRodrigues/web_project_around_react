@@ -32,8 +32,9 @@
     return data;
   }
 
-  async setNewPhoto(url) {
+  async setNewPhoto({url}) {
     const res = await fetch(`${this.baseUrl}/users/me/avatar`, {
+      
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
@@ -44,6 +45,7 @@
       throw new Error(`Error updating new photo: ${res.status}`);
     }
     const data = await res.json();
+console.log("API",data)
     return data;
   }
 

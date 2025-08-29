@@ -78,3 +78,11 @@
   right: 15px;
   height: 19px;
 }
+.cards__empty-message{
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: rgba(84, 84, 84, 1);
+  margin: 64px 0;
+  display: flex;
+  justify-content: center;
+}

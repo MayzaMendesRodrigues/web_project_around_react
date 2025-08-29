@@ -10,10 +10,10 @@ import ImagePopup from "./ImagePopup";
 import { api } from "../../utils/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Main({onOpenPopup, onClosePopup, popup}) {
+export default function Main({ onOpenPopup, onClosePopup, popup }) {
   const { currentUser } = useContext(CurrentUserContext);
-  // const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
+
   async function handleCardDelete(card) {
     await api
       .deleteCard(card._id)
@@ -24,6 +24,7 @@ export default function Main({onOpenPopup, onClosePopup, popup}) {
       })
       .catch((error) => console.error("Erro ao eliminar card", error));
   }
+
   async function handleCardLike(card) {
     const isLiked = card.isLiked;
 
@@ -65,17 +66,18 @@ export default function Main({onOpenPopup, onClosePopup, popup}) {
     title: "",
     children: <ImagePopup card={card} onClose={onClosePopup} />,
   });
-  // function handleOpenPopup(popup) {
-  //   setPopup(popup);
-  // }
-  // function handleClosePopup() {
-  //   setPopup(null);
-  // }
+
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__content">
-          <button type="button" onClick={() => onOpenPopup(newAvatarPopup)}>
+          <button
+            type="button"
+            onClick={() => {
+              console.log("Botao clicado");
+              onOpenPopup(newAvatarPopup);
+            }}
+          >
             <img
               src={currentUser.avatar}
               alt="Perfil do usuario"
@@ -102,7 +104,7 @@ export default function Main({onOpenPopup, onClosePopup, popup}) {
           className="profile__add-button"
           id="profile__add_card-btn"
           type="button"
-          onClick={() =>onOpenPopup(newCardPopup)}
+          onClick={() => onOpenPopup(newCardPopup)}
         >
           <img
             src={addCard}
@@ -112,20 +114,24 @@ export default function Main({onOpenPopup, onClosePopup, popup}) {
         </button>
       </section>
       <section className="cards">
-        <ul className="cards__element-items" id="cards__content">
-          {cards.map((card) => {
-            return (
-              <Card
-                key={card._id}
-                card={card}
-                handleOpenPopup={(img) => onOpenPopup(imagePopup(img))}
-                isLiked={card.isLiked}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
-              />
-            );
-          })}
-        </ul>
+        {cards.length === 0 ? (
+          <p className="cards__empty-message">Nenhuma publicação</p>
+        ) : (
+          <ul className="cards__element-items" id="cards__content">
+            {cards.map((card) => {
+              return (
+                <Card
+                  key={card._id}
+                  card={card}
+                  handleOpenPopup={(img) => onOpenPopup(imagePopup(img))}
+                  isLiked={card.isLiked}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
+                />
+              );
+            })}
+          </ul>
+        )}
       </section>
 
       {popup && (

@@ -2,7 +2,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { api } from "./utils/api";
-import { useEffect, useState } from "react";
+import { useEffect,  useState } from "react";
 import "./pages/index.css";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 
@@ -31,22 +31,41 @@ export default function App() {
   }, []);
 
   const handleUpdateUser = async (data) => {
-    console.log(data, "DATA");
-    await api.setUserInfo(data).then((newData) => {
-      setCurrentUser(newData);
-      handleClosePopup();
-      
-    });
+    try {
+      console.log(data, "DATA");
+      await api.setUserInfo(data).then((newData) => {
+        setCurrentUser(newData);
+        handleClosePopup();
+      });
+    } catch (error) {
+      console.error("Erro ao atualizar foto", error);
+    }
+  };
+
+  const handleUpdateAvatar = async (data) => {
+    try {
+      console.log("DATA AVATAR:", data)
+      await api.setNewPhoto(data).then((newPhoto) => {
+        console.log("Resposta do APi AVATAR", newPhoto)
+        setCurrentUser(newPhoto);
+        handleClosePopup();
+      });
+    } catch (error) {
+      console.error("Erro ao atualizar avatar", error);
+    }
   };
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+    <CurrentUserContext.Provider
+      value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+    >
       <div className="page">
         <Header />
         <Main
           onOpenPopup={handleOpenPopup}
           onClosePopup={handleClosePopup}
           popup={popup}
+       
         />
         <Footer />
       </div>
