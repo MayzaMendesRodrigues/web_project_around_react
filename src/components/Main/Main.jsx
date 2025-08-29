@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import editProfile from "/images/edit__button.svg";
 import addCard from "/images/plus.svg";
 import Popup from "./Popup";
@@ -7,50 +7,11 @@ import EditProfile from "./EditProfile";
 import EditAvatar from "./EditAvatar";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
-import { api } from "../../utils/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Main({ onOpenPopup, onClosePopup, popup }) {
+export default function Main({ onOpenPopup, onClosePopup, popup, cards, onCardLike, onCardDelete }) {
   const { currentUser } = useContext(CurrentUserContext);
-  const [cards, setCards] = useState([]);
 
-  async function handleCardDelete(card) {
-    await api
-      .deleteCard(card._id)
-      .then(() => {
-        setCards((state) =>
-          state.filter((currentCard) => currentCard._id !== card._id)
-        );
-      })
-      .catch((error) => console.error("Erro ao eliminar card", error));
-  }
-
-  async function handleCardLike(card) {
-    const isLiked = card.isLiked;
-
-    await api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      })
-      .catch((error) => console.error(error));
-  }
-  useEffect(() => {
-    async function loadingCard() {
-      try {
-        const response = await api.getInicialCards();
-
-        setCards(response);
-      } catch (error) {
-        console.error("Erro ao buscar card", error);
-      }
-    }
-    loadingCard();
-  }, []);
 
   const newCardPopup = {
     children: <NewCard />,
@@ -125,8 +86,8 @@ export default function Main({ onOpenPopup, onClosePopup, popup }) {
                   card={card}
                   handleOpenPopup={(img) => onOpenPopup(imagePopup(img))}
                   isLiked={card.isLiked}
-                  onCardLike={handleCardLike}
-                  onCardDelete={handleCardDelete}
+                  onCardLike={onCardLike}
+                  onCardDelete={onCardDelete}
                 />
               );
             })}

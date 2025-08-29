@@ -2,13 +2,63 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { api } from "./utils/api";
-import { useEffect,  useState } from "react";
+import { useEffect, useState } from "react";
 import "./pages/index.css";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [popup, setPopup] = useState(null);
+  const [cards, setCards] = useState([]);
+
+  const handleAddPlaceSubmit = async (data) => {
+    try {
+      const newCard = await api.addCard(data);
+      setCards([newCard, ...cards]);
+      handleClosePopup();
+    } catch (error) {
+      console.error("Erro ao adicionar cartao", error);
+    }
+  };
+
+  async function handleCardDelete(card) {
+    await api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) =>
+          state.filter((currentCard) => currentCard._id !== card._id)
+        );
+      })
+      .catch((error) => console.error("Erro ao eliminar card", error));
+  }
+
+  async function handleCardLike(card) {
+    const isLiked = card.isLiked;
+
+    await api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+  useEffect(() => {
+    async function loadingCard() {
+      try {
+        const response = await api.getInicialCards();
+        console.log("lista de card", response);
+        setCards(response)
+        
+      } catch (error) {
+        console.error("Erro ao buscar card", error);
+      }
+    }
+    loadingCard();
+  }, []);
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -44,9 +94,9 @@ export default function App() {
 
   const handleUpdateAvatar = async (data) => {
     try {
-      console.log("DATA AVATAR:", data)
+      console.log("DATA AVATAR:", data);
       await api.setNewPhoto(data).then((newPhoto) => {
-        console.log("Resposta do APi AVATAR", newPhoto)
+        console.log("Resposta do APi AVATAR", newPhoto);
         setCurrentUser(newPhoto);
         handleClosePopup();
       });
@@ -57,7 +107,12 @@ export default function App() {
 
   return (
     <CurrentUserContext.Provider
-      value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+      value={{
+        currentUser,
+        handleUpdateUser,
+        handleUpdateAvatar,
+        handleAddPlaceSubmit,
+      }}
     >
       <div className="page">
         <Header />
@@ -65,7 +120,9 @@ export default function App() {
           onOpenPopup={handleOpenPopup}
           onClosePopup={handleClosePopup}
           popup={popup}
-       
+          cards={cards}
+          onCardDelete={handleCardDelete}
+          onCardLike={handleCardLike}
         />
         <Footer />
       </div>

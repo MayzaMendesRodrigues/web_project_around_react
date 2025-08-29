@@ -1,6 +1,23 @@
+import { useContext, useRef } from "react";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 export default function NewCard() {
+  const nameRef = useRef();
+  const linkRef = useRef();
+  const { handleAddPlaceSubmit } = useContext(CurrentUserContext);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    handleAddPlaceSubmit({
+      name: nameRef.current.value,
+      link: linkRef.current.value,
+    });
+
+    
+  }
   return (
     <form
+      onSubmit={handleSubmit}
       className="popup__form"
       name="card-form"
       id="new-card-form"
@@ -16,6 +33,7 @@ export default function NewCard() {
           minLength="1"
           name="card-name"
           placeholder="Title"
+          ref={nameRef}
           required
           type="text"
         />
@@ -28,6 +46,7 @@ export default function NewCard() {
           name="link"
           placeholder="Image link"
           required
+          ref={linkRef}
           type="url"
         />
         <span className="popup__error" id="card-link-error"></span>

@@ -1,4 +1,4 @@
-  class Api {
+class Api {
   constructor({ baseUrl, headers }) {
     this.baseUrl = baseUrl;
     this.headers = headers;
@@ -32,9 +32,8 @@
     return data;
   }
 
-  async setNewPhoto({url}) {
+  async setNewPhoto({ url }) {
     const res = await fetch(`${this.baseUrl}/users/me/avatar`, {
-      
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({
@@ -45,7 +44,7 @@
       throw new Error(`Error updating new photo: ${res.status}`);
     }
     const data = await res.json();
-console.log("API",data)
+    console.log("API", data);
     return data;
   }
 
@@ -58,7 +57,7 @@ console.log("API",data)
       throw new Error(`Erro ao buscar cards: ${res.status} `);
     }
     const data = await res.json();
-    return data.reverse();
+    return data;
   }
 
   async addCard({ name, link }) {
@@ -114,16 +113,14 @@ console.log("API",data)
     return data;
   }
 
-  async changeLikeCardStatus(cardId , isLiked){
-    if (isLiked){
-        return this.likeCard(cardId)
+  async changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.likeCard(cardId);
     } else {
-        return this.dislikeCard(cardId)
+      return this.dislikeCard(cardId);
     }
   }
 }
-
-
 
 export const api = new Api({
   baseUrl: "https://around-api.pt-br.tripleten-services.com/v1",

@@ -2,16 +2,14 @@ import { useContext, useRef } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 export default function EditAvatar() {
   const avatarRef = useRef();
-  const {handleUpdateAvatar} = useContext(CurrentUserContext)
+  const { handleUpdateAvatar } = useContext(CurrentUserContext);
 
   function handleSubmit(event) {
     event.preventDefault();
-console.log("Submit do avatar", avatarRef.current.value)
+    console.log("Submit do avatar", avatarRef.current.value);
     handleUpdateAvatar({
       url: avatarRef.current.value,
     });
-
-
   }
   return (
     <form
