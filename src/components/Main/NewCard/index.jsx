@@ -1,20 +1,48 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
+
 export default function NewCard() {
   const nameRef = useRef();
   const linkRef = useRef();
   const { handleAddPlaceSubmit } = useContext(CurrentUserContext);
+  const [error, setError] = useState({ name: "", link: "" });
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    handleAddPlaceSubmit({
-      name: nameRef.current.value,
-      link: linkRef.current.value,
-    });
 
-    
+
+    const nameValue = nameRef.current.value;
+    const linkValue = linkRef.current.value;
+
+    let errors = { name: "", link: "" };
+    if (!nameValue) {
+      errors.name = "O título é obrigatório";
+    } else if (nameValue.length < 2) {
+      errors.name = "Mínimo 2 caracteres";
+    }
+
+    if (!linkValue) {
+      errors.link = "O link é obrigatório";
+    }
+
+    if(errors.name || errors.link){
+      return setError(errors)
+    }
+
+      handleAddPlaceSubmit({
+      name: nameValue,
+      link: linkValue
+    })
+
+    nameRef.current.value=""
+    linkRef.current.value=""
+    setError({name:"", link:""})
+
+
   }
+
+ 
   return (
     <form
       onSubmit={handleSubmit}
@@ -37,7 +65,7 @@ export default function NewCard() {
           required
           type="text"
         />
-        <span className="popup__error" id="card-name-error"></span>
+        <span className="popup__error" id="card-name-error">{error.name}</span>
       </label>
       <label className="popup__field">
         <input
@@ -49,7 +77,7 @@ export default function NewCard() {
           ref={linkRef}
           type="url"
         />
-        <span className="popup__error" id="card-link-error"></span>
+        <span className="popup__error" id="card-link-error">{error.link}</span>
       </label>
 
       <button className="button popup__button" type="submit">
