@@ -11,7 +11,6 @@ export default function NewCard() {
     e.preventDefault();
 
 
-
     const nameValue = nameRef.current.value;
     const linkValue = linkRef.current.value;
 
@@ -24,6 +23,11 @@ export default function NewCard() {
 
     if (!linkValue) {
       errors.link = "O link é obrigatório";
+    } 
+    try {
+      new URL(linkValue);
+    } catch {
+      setError("Formato de URL inválido");
     }
 
     if(errors.name || errors.link){

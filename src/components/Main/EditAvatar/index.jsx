@@ -1,14 +1,26 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 export default function EditAvatar() {
   const avatarRef = useRef();
   const { handleUpdateAvatar } = useContext(CurrentUserContext);
-
+  const [error, setError] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submit do avatar", avatarRef.current.value);
+
+    const urlValue = avatarRef.current.value;
+
+    if (!urlValue) {
+      setError("O link é obrigatório");
+      return;
+    }
+    try {
+      new URL(urlValue);
+    } catch {
+      setError("Formato de URL inválido");
+    }
+
     handleUpdateAvatar({
-      url: avatarRef.current.value,
+      url: urlValue,
     });
   }
   return (
@@ -31,7 +43,9 @@ export default function EditAvatar() {
           required
           type="url"
         />
-        <span className="popup__error" id="card-link-error"></span>
+        <span className="popup__error" id="card-link-error">
+          {error}
+        </span>
       </label>
 
       <button className="button popup__button" type="submit">
