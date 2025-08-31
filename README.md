@@ -18,7 +18,7 @@ The focus is to convert a functional and interactive website into a modern, comp
 * Develop and structure reusable React components.
 * Manage data flow with `props` and `children`.
 * Organize the folder structure for scalability.
-* Integrate with external APIs using `fetch` and `axios`.
+* Integrate with external APIs using `fetch` .
 
 ---
 
