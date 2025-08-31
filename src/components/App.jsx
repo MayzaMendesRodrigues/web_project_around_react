@@ -1,10 +1,10 @@
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import { api } from "./utils/api";
+import Footer from "./Footer/Footer.jsx"
+import Header from "./Header/Header.jsx";
+import Main from "./Main/Main.jsx";
+import { api } from "../utils/api.js";
 import { useEffect, useState } from "react";
-import "./index.css";
-import CurrentUserContext from "./contexts/CurrentUserContext";
+import "../index.css";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
