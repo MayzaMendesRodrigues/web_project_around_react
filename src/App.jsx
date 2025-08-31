@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { api } from "./utils/api";
 import { useEffect, useState } from "react";
-import "./pages/index.css";
+import "./index.css";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 
 export default function App() {
