@@ -1,5 +1,6 @@
 
 # 🇺🇸 USA Around in React
+![image](https://github.com/user-attachments/assets/0a104bfd-b418-4dae-9954-a68002c3a517)
 
 ---
 
