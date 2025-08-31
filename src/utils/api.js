@@ -44,7 +44,6 @@ class Api {
       throw new Error(`Error updating new photo: ${res.status}`);
     }
     const data = await res.json();
-    console.log("API", data);
     return data;
   }
 

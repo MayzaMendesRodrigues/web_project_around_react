@@ -35,7 +35,7 @@ export default function Main({ onOpenPopup, onClosePopup, popup, cards, onCardLi
           <button
             type="button"
             onClick={() => {
-              console.log("Botao clicado");
+        
               onOpenPopup(newAvatarPopup);
             }}
           >

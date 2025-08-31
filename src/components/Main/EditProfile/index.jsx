@@ -6,6 +6,7 @@ export default function EditProfile() {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  
 
   useEffect(() => {
     if (currentUser) {
@@ -26,7 +27,7 @@ export default function EditProfile() {
     event.preventDefault();
    await handleUpdateUser({ name, about: description });
 
-    console.log(name, description)
+  
   };
 
   

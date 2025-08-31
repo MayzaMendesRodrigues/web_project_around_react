@@ -50,7 +50,6 @@ export default function App() {
     async function loadingCard() {
       try {
         const response = await api.getInicialCards();
-        console.log("lista de card", response);
         setCards(response)
         
       } catch (error) {
@@ -82,7 +81,6 @@ export default function App() {
 
   const handleUpdateUser = async (data) => {
     try {
-      console.log(data, "DATA");
       await api.setUserInfo(data).then((newData) => {
         setCurrentUser(newData);
         handleClosePopup();
@@ -94,9 +92,7 @@ export default function App() {
 
   const handleUpdateAvatar = async (data) => {
     try {
-      console.log("DATA AVATAR:", data);
       await api.setNewPhoto(data).then((newPhoto) => {
-        console.log("Resposta do APi AVATAR", newPhoto);
         setCurrentUser(newPhoto);
         handleClosePopup();
       });
