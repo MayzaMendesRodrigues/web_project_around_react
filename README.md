@@ -1,78 +1,82 @@
 
-# 🇺🇸 EUA Afora em React
+# 🇺🇸 USA Around in React
 
------
+---
 
-##  Descrição do Projeto
+## 📌 Project Overview
 
-Este projeto foi criado com o objetivo principal de **desenvolver habilidades em React**, servindo como um estudo de caso prático para a **migração de uma aplicação construída com JavaScript puro para o framework React**. O foco é converter um site funcional e interativo em uma aplicação moderna e baseada em componentes, usando o Vite como ferramenta de build.
+This project was developed to **strengthen React expertise** by migrating an application originally built with **vanilla JavaScript** into a **modern, component-based React application**.
+The project uses **Vite** as the build tool and prepares the structure for integration with **REST APIs**, ensuring scalability and maintainability.
 
------
+---
 
-##  Objetivos de Aprendizagem
+## 🎯 Key Learning Goals
 
-  - Configurar um projeto React com Vite.
-  - Converter HTML para JSX.
-  - Criar e organizar componentes React.
-  - Implementar a reutilização de componentes.
-  - Gerenciar `props` e `children`.
-  - Estruturar pastas de forma organizada.
+* Set up a React project with Vite.
+* Refactor HTML into JSX.
+* Develop and structure reusable React components.
+* Manage data flow with `props` and `children`.
+* Organize the folder structure for scalability.
+* Integrate with external APIs using `fetch` and `axios`.
 
------
+---
 
-##  Tecnologias Utilizadas
+## 🛠 Tech Stack
 
-  - **React**: Biblioteca JavaScript para interfaces.
-  - **Vite**: Ferramenta de build rápida.
-  - **JSX**: Extensão de sintaxe JavaScript.
-  - **CSS**: Estilização (migrada do projeto anterior).
+* **React** – UI library.
+* **Vite** – Lightning-fast build tool.
+* **JSX** – Syntax extension for JavaScript.
+* **CSS** – Styling (migrated from previous project).
+* **REST API** – Dynamic data integration.
 
------
+---
 
-## 🛠 Configuração Inicial
+## ⚙️ Setup Instructions
 
-1.  **Criar o Repositório**
+1. Clone the repository:
 
-    ```bash
-    # Clone o repositório
-    git clone git@github.com:MayzaMendesRodrigues/web_project_around_react.git
-    cd web_project_around_react
-    ```
+```bash
+git clone git@github.com:MayzaMendesRodrigues/web_project_around_react.git
+cd web_project_around_react
+```
 
-    ```bash
-    # Criar projeto React com Vite
-    npm create vite@latest .
-    # Selecione: React → JavaScript
-    ```
+2. Create the React project with Vite:
 
-    ```bash
-    # Instalar dependências
-    npm i
-    ```
+```bash
+npm create vite@latest .
+# Select: React → JavaScript
+```
 
-2.  **Configurar Scripts e Porta**
+3. Install dependencies:
 
-    **`package.json`**:
+```bash
+npm i
+```
 
-    ```json
-    "scripts": {
-      "dev": "vite --open",
-      "build": "vite build",
-      "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-      "preview": "vite preview"
-    }
-    ```
+4. Configure scripts in **`package.json`** and server port in **`vite.config.js`** (default: 3000).
 
-    **`vite.config.js`**:
+---
 
-    ```javascript
-    import { defineConfig } from 'vite';
-    import react from '@vitejs/plugin-react';
+## 🌐 API Integration
 
-    export default defineConfig({
-      plugins: [react()],
-      server: {
-        port: 3000,
-      },
-    });
-    ```
+The application fetches and renders **dynamic content** through REST API requests.
+Data can be consumed using either **fetch** or **axios**, centralized under `src/services/` for clean architecture.
+
+---
+
+## 🚀 Next Steps
+
+* [ ] Migrate to **TypeScript** for static typing.
+* [ ] Add **unit and integration tests** (Jest + Testing Library).
+* [ ] Implement **global state management** (Context API or Zustand).
+* [ ] Set up **CI/CD pipeline** with GitHub Actions.
+* [ ] Enhance **mobile-first responsiveness**.
+* [ ] Add **JWT authentication**.
+
+---
+
+## 📞 Contact
+
+* **Email:** [mayzamrodrigues@gmail.com](mailto:mayzamrodrigues@gmail.com)
+* **LinkedIn:** [linkedin.com/in/mayza-ynara-mendes-rodrigues](https://linkedin.com/in/mayza-ynara-mendes-rodrigues)
+* **Portfolio:** [mayzamendesrodrigues.github.io]
