@@ -6,8 +6,8 @@
 
 ## 📌 Project Overview
 
-This project was developed to **strengthen React expertise** by migrating an application originally built with **vanilla JavaScript** into a **modern, component-based React application**.
-The project uses **Vite** as the build tool and prepares the structure for integration with **REST APIs**, ensuring scalability and maintainability.
+This project was created with the main goal of developing React skills, serving as a practical case study for the migration of an application built with pure JavaScript to the React framework.
+The focus is to convert a functional and interactive website into a modern, component-based application, using Vite as the build tool and preparing integration with external APIs.
 
 ---
 
